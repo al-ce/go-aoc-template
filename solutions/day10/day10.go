@@ -1,13 +1,13 @@
-package day1
+package day10
 
 // import (
-// 	h "go-aoc2024/internal/helpers"
+//     h "go-aoc-template/internal/helpers"
 // )
 
 func PartOne(lines []string) string {
-	return "TODO"
+    return "TODO"
 }
 
 func PartTwo(lines []string) string {
-	return "TODO"
+    return "TODO"
 }

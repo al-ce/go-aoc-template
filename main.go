@@ -7,21 +7,8 @@ import (
 	"strconv"
 
 	h "go-aoc-template/internal/helpers"
-	day1 "go-aoc-template/solutions/day1"
+	solutions "go-aoc-template/internal/imports"
 )
-
-type InputCoords struct {
-	Day  int
-	Part int
-}
-
-type SolutionFunc func([]string) string
-
-var solutions = map[InputCoords]SolutionFunc{
-	{1, 1}: day1.PartOne,
-	{1, 2}: day1.PartTwo,
-	// etc., add as more days get completed
-}
 
 func parser(args []string) (int, int) {
 	if len(args) != 2 {
@@ -56,9 +43,9 @@ func main() {
 	flag.Parse()
 	args := flag.Args()
 	day, part := parser(args)
-	input := InputCoords{day, part}
+	input := solutions.InputCoords{Day: day, Part: part}
 
-	solution, exists := solutions[input]
+	solution, exists := solutions.Solutions[input]
 	if !exists {
 		fmt.Fprintf(os.Stderr, "No solution implemented for day %d\n", day)
 		os.Exit(1)

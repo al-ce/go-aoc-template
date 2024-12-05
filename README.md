@@ -17,6 +17,7 @@ git clone --single-branch --branch main https://github.com/al-ce/aoc-go-template
 ```bash
 ❯ tree
 .
+├── setup.sh
 ├── go.mod
 ├── inputs
 │   └── 1
@@ -27,22 +28,23 @@ git clone --single-branch --branch main https://github.com/al-ce/aoc-go-template
 ├── main.go
 ├── README.md
 └── solutions
-    └── day1
-        ├── day1.go
-        └── day1_test.go
+    ├── all
+    │   └── all.go
+    ├── day01
+    │   ├── day01.go
+    │   └── day01_test.go
+    ├── # etc.
 
-6 directories, 8 files
+31 directories, 58 files
 ```
 
-Download the input for day `N` in `inputs/` (please note that `inputs/` is in `.gitignore` so you don't commit the input data).
+Download the input for day `N` (no leading zeros) in `inputs/` (please note that `inputs/` is in `.gitignore` so you don't commit the input data).
 
 An example with [aocgofetch](https://github.com/al-ce/aocgofetch):
 
 ```bash
 > aocgofetch 2024 1 > inputs/1
 ```
-
-Then create the file for the day in `solutions/` in the format `dayN/dayN.go` and `dayN/dayN_test.go`. Day 1 is already created. Update the [solutions map](https://github.com/al-ce/go-aoc-template/blob/79976fc327b31d0cbd02c81e87def446bd1a17a6/main.go#L19-L23) in `main.go` as you add more solution files.
 
 Finally, create a new git branch for the year you are solving so you'll have a clean template for next year!
 
@@ -85,13 +87,18 @@ This is the `justfile` I use to help my workflow.
 ```just
 set quiet
 
-get year day:
-    aocgofetch {{year}} {{day}} > inputs/{{day}}
+get year day:  # Write the puzzle input to the input folder.
+    aocgofetch {{year}} {{day}} > inputs/{{day}}  # Use your preferred tool
 
-solve day part:
+setup day:  # Clean slate for a given day. Used to create templates.
+    ./setup.sh {{day}}
+
+everyday:  # Loops over setup command. Sets up blank year.
+    bash -c 'for i in {1..25}; do just setup "$i"; done'
+
+solve day part:  # Prints the solution for a given day and part.
     go run . {{day}} {{part}}
 
-test day:
-    go test go-aoc-template/solutions/day{{day}}
-
+test day:  # Run the test for the given day, assuming example input and known solution.
+    go test go-aoc-template/solutions/day$(printf %02d {{day}})
 ```
