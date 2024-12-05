@@ -4,9 +4,9 @@ day=$1
 project_name="go-aoc-template"
 
 # Create day{N}.go
-mkdir -p solutions/day$(printf "%02d" ${day}) && \
-cat << EOF > solutions/day$(printf "%02d" ${day})/day$(printf "%02d" ${day}).go
-package day$(printf "%02d" ${day})
+mkdir -p "solutions/day$(printf "%02d" "${day}")" && \
+cat << EOF > "solutions/day$(printf "%02d" "${day}")/day$(printf "%02d" "${day}").go"
+package day$(printf "%02d" "${day}")
 
 // import (
 //     h "${project_name}/internal/helpers"
@@ -22,8 +22,8 @@ func PartTwo(lines []string) string {
 EOF
 
 # Create day{N}_test.go
-cat << EOF > solutions/day$(printf "%02d" ${day})/day$(printf "%02d" ${day})_test.go
-package day$(printf "%02d" ${day})
+cat << EOF > "solutions/day$(printf "%02d" "${day}")/day$(printf "%02d" "${day}")_test.go"
+package day$(printf "%02d" "${day}")
 
 import (
     "strings"
