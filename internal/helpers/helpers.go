@@ -12,8 +12,8 @@ func Check(e error) {
 	}
 }
 
-func InputLines(day, part int) ([]string, error) {
-	file, err := os.Open(fmt.Sprintf("inputs/day%d-%d", day, part))
+func InputLines(day int) ([]string, error) {
+	file, err := os.Open(fmt.Sprintf("inputs/%d", day))
 	Check(err)
 	defer file.Close()
 
