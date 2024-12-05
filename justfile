@@ -1,10 +1,11 @@
 set quiet
+releasepath := './bin/aocgosolutions'
 
 get year day:
     aocgofetch {{year}} {{day}} > inputs/{{day}}
 
 solve day part:
-    go run . {{day}} {{part}}
+    mkdir -p bin && go build -o {{releasepath}} go-aoc-template && {{releasepath}} {{day}} {{part}}
 
 test day:
     go test go-aoc-template/solutions/day$(printf %02d {{day}})
