@@ -5,9 +5,14 @@ import (
     "testing"
 )
 
-var lines = strings.Split(`example input`, "\n")
+var lines = strings.Split(`7 6 4 2 1
+1 2 7 8 9
+9 7 6 2 1
+1 3 2 4 5
+8 6 4 4 1
+1 3 6 7 9`, "\n")
 
-var partOneAnswer = "example answer"
+var partOneAnswer = "2"
 var partTwoAnswer = "example answer"
 
 func TestPartOne(t *testing.T) {
