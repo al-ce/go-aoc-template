@@ -14,7 +14,10 @@ func Check(e error) {
 
 func InputLines(day int) ([]string, error) {
 	file, err := os.Open(fmt.Sprintf("inputs/%d", day))
-	Check(err)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Could not find input file for day %d. Add input to ./inputs/%d\n", day, day)
+		os.Exit(1)
+	}
 	defer file.Close()
 
 	scanner := bufio.NewScanner(file)
