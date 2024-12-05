@@ -1,5 +1,10 @@
 set quiet
 
-# Get the solution for the given day and part
+get year day:
+    aocgofetch {{year}} {{day}} > inputs/{{day}}
+
 solve day part:
     go run . {{day}} {{part}}
+
+test day:
+    go test go-aoc-template/solutions/day{{day}}
