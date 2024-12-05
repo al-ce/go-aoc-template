@@ -6,6 +6,7 @@ import (
 	"os"
 	"strconv"
 
+	h "go-aoc-template/internal/helpers"
 	day1 "go-aoc-template/solutions/day1"
 )
 
@@ -14,11 +15,11 @@ type InputCoords struct {
 	Part int
 }
 
-type SolutionFunc func() string
+type SolutionFunc func([]string) string
 
 var solutions = map[InputCoords]SolutionFunc{
-	{1, 1}: day1.Part1,
-	{1, 2}: day1.Part2,
+	{1, 1}: day1.PartOne,
+	{1, 2}: day1.PartTwo,
 	// etc., add as more days get completed
 }
 
@@ -63,5 +64,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Println(solution())
+	lines, err := h.InputLines(day)
+	h.Check(err)
+	fmt.Println(solution(lines))
 }

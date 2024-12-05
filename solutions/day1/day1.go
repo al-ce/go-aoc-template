@@ -4,10 +4,10 @@ package day1
 // 	h "go-aoc2024/internal/helpers"
 // )
 
-func Part1() string {
+func PartOne(lines []string) string {
 	return "TODO"
 }
 
-func Part2() string {
+func PartTwo(lines []string) string {
 	return "TODO"
 }

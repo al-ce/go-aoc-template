@@ -1,3 +1,2 @@
-justfile
 inputs/
 .env
