@@ -13,7 +13,7 @@ var lines = strings.Split(`7 6 4 2 1
 1 3 6 7 9`, "\n")
 
 var partOneAnswer = "2"
-var partTwoAnswer = "example answer"
+var partTwoAnswer = "4"
 
 func TestPartOne(t *testing.T) {
     solution := PartOne(lines)
