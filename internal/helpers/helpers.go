@@ -59,5 +59,5 @@ func GetSignOfDiff(l, r int) int {
 	if diff == 0 {
 		return 0
 	}
-	return (l - r) / diff
+	return (l - r) / -diff
 }
