@@ -86,19 +86,20 @@ This is the `justfile` I use to help my workflow.
 
 ```just
 set quiet
+releasepath := './bin/aocgosolutions'
 
-get year day:  # Write the puzzle input to the input folder.
-    aocgofetch {{year}} {{day}} > inputs/{{day}}  # Use your preferred tool
+get year day:
+    aocgofetch {{year}} {{day}} > inputs/{{day}}
 
-setup day:  # Clean slate for a given day. Used to create templates.
+solve day part:
+    mkdir -p bin && go build -o {{releasepath}} go-aoc-template && {{releasepath}} {{day}} {{part}}
+
+test day:
+    go test go-aoc-template/solutions/day$(printf %02d {{day}})
+
+setup day:
     ./setup.sh {{day}}
 
-everyday:  # Loops over setup command. Sets up blank year.
+everyday:
     bash -c 'for i in {1..25}; do just setup "$i"; done'
-
-solve day part:  # Prints the solution for a given day and part.
-    go run . {{day}} {{part}}
-
-test day:  # Run the test for the given day, assuming example input and known solution.
-    go test go-aoc-template/solutions/day$(printf %02d {{day}})
 ```
