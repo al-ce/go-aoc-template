@@ -46,5 +46,27 @@ func PartOne(lines []string) string {
 }
 
 func PartTwo(lines []string) string {
-	return "TODO"
+	safeCount := 0
+	for _, reportStr := range lines {
+		report := h.ParseIntString(reportStr, " ")
+		direction := getDirection(report)
+
+		// Check all subsets, "removing" one at a time
+		// e.g.: 9 7 6 2 1
+		// i = 0: _ 7 6 2 1; i = 1: 9 _ 6 2 1 etc.
+		// Break as soon as we find a safe subset
+
+		for i := 1; i <= len(report); i++ {
+			start, rest := report[:i-1], report[i:]
+			subset := []int{}
+			subset = append(subset, start...)
+			subset = append(subset, rest...)
+
+			if checkReport(subset, direction) == 0 {
+				safeCount += 1
+				break
+			}
+		}
+	}
+	return fmt.Sprintf("%d", safeCount)
 }
