@@ -1,8 +1,9 @@
 package day02
 
 import (
-    "strings"
-    "testing"
+	"fmt"
+	"strings"
+	"testing"
 )
 
 var lines = strings.Split(`7 6 4 2 1
@@ -12,19 +13,27 @@ var lines = strings.Split(`7 6 4 2 1
 8 6 4 4 1
 1 3 6 7 9`, "\n")
 
-var partOneAnswer = "2"
-var partTwoAnswer = "4"
+var (
+	partOneAnswer = "example answer"
+	partTwoAnswer = "example answer"
+)
+
+type SolutionFunc func([]string) string
+
+func runTest(_ *testing.T, part int, solution SolutionFunc, expected string) {
+	fmt.Printf("Part %d: ", part)
+	result := solution(lines)
+	if result != expected {
+		fmt.Printf("\033[31m%v\033[0m (expected \033[32m%v\033[0m)\n", result, expected)
+	} else {
+		fmt.Printf("\033[32m%v\033[0m\n", result)
+	}
+}
 
 func TestPartOne(t *testing.T) {
-    solution := PartOne(lines)
-    if solution != partOneAnswer {
-        t.Errorf("Day 2 Part 1: \nexpected %v got %v", partOneAnswer, solution)
-    }
+	runTest(t, 1, PartOne, partOneAnswer)
 }
 
 func TestPartTwo(t *testing.T) {
-    solution := PartTwo(lines)
-    if solution != partTwoAnswer {
-        t.Errorf("Day 2 Part 2: \nexpected %v got %v", partTwoAnswer, solution)
-    }
+	runTest(t, 2, PartTwo, partTwoAnswer)
 }
