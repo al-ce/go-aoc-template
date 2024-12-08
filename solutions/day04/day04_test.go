@@ -5,9 +5,18 @@ import (
     "testing"
 )
 
-var lines = strings.Split(`example input`, "\n")
+var lines = strings.Split(`MMMSXXMASM
+MSAMXMSMSA
+AMXSXMAAMM
+MSAMASMSMX
+XMASAMXAMM
+XXAMMXXAMA
+SMSMSASXSS
+SAXAMASAAA
+MAMMMXMMMM
+MXMXAXMASX`, "\n")
 
-var partOneAnswer = "example answer"
+var partOneAnswer = "18"
 var partTwoAnswer = "example answer"
 
 func TestPartOne(t *testing.T) {
