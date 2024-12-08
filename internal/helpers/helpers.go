@@ -66,3 +66,8 @@ func GetSignOfDiff(l, r int) int {
 func InRange(x, min, max int) bool {
 	return x >= min && x <= max
 }
+
+// Check if a row, col tuple is a valid coord in a square matrix
+func InMatrix(row, col int, m []string) bool {
+	return row >= 0 && col >= 0 && row <= len(m)-1 && col <= len(m)-1
+}
