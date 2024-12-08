@@ -48,6 +48,16 @@ func ParseIntString(str string, sep string) []int {
 	return intSlice
 }
 
+func MakeHashmap(lines []string, sep string) map[string]string {
+	var m = map[string]string{}
+
+	for _, l := range lines {
+		split := strings.Split(l, sep)
+		m[split[0]] = split[1]
+	}
+	return m
+}
+
 // Get the absolute diff between two integers
 func GetAbsDiff(l, r int) int {
 	return int(math.Abs(float64(l - r)))
