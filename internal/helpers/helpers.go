@@ -61,3 +61,8 @@ func GetSignOfDiff(l, r int) int {
 	}
 	return (l - r) / -diff
 }
+
+// Check if a number is within a range, inclusive
+func InRange(x, min, max int) bool {
+	return x >= min && x <= max
+}
