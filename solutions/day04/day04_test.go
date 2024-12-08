@@ -18,8 +18,8 @@ MAMMMXMMMM
 MXMXAXMASX`, "\n")
 
 var (
-	partOneAnswer = "example answer"
-	partTwoAnswer = "example answer"
+	partOneAnswer = "18"
+	partTwoAnswer = "9"
 )
 
 type SolutionFunc func([]string) string

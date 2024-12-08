@@ -14,8 +14,8 @@ var lines = strings.Split(`7 6 4 2 1
 1 3 6 7 9`, "\n")
 
 var (
-	partOneAnswer = "example answer"
-	partTwoAnswer = "example answer"
+	partOneAnswer = "2"
+	partTwoAnswer = "4"
 )
 
 type SolutionFunc func([]string) string
