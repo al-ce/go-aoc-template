@@ -21,14 +21,16 @@ func PartTwo(lines []string) string {
 }
 EOF
 
+mkdir -p "solutions/day$(printf "%02d" "${day}")/test$(printf "%02d" "${day}")" && \
 # Create day{N}_test.go
-cat << EOF > "solutions/day$(printf "%02d" "${day}")/day$(printf "%02d" "${day}")_test.go"
-package day$(printf "%02d" "${day}")
+cat << EOF > "solutions/day$(printf "%02d" "${day}")/test$(printf "%02d" "${day}")/test$(printf "%02d" "${day}").go"
+package main
 
 import (
 	"fmt"
 	"strings"
-	"testing"
+
+	day$(printf "%02d" "${day}") "go-aoc-template/solutions/day$(printf "%02d" "${day}")"
 )
 
 var lines = strings.Split(\`example input\`, "\n")
@@ -40,7 +42,7 @@ var (
 
 type SolutionFunc func([]string) string
 
-func runTest(_ *testing.T, part int, solution SolutionFunc, expected string) {
+func runTest(part int, solution SolutionFunc, expected string) {
 	fmt.Printf("Part %d: ", part)
 	result := solution(lines)
 	if result != expected {
@@ -50,11 +52,8 @@ func runTest(_ *testing.T, part int, solution SolutionFunc, expected string) {
 	}
 }
 
-func TestPartOne(t *testing.T) {
-	runTest(t, 1, PartOne, partOneAnswer)
-}
-
-func TestPartTwo(t *testing.T) {
-	runTest(t, 2, PartTwo, partTwoAnswer)
+func main() {
+	runTest(1, day$(printf "%02d" "${day}").PartOne, partOneAnswer)
+	runTest(2, day$(printf "%02d" "${day}").PartTwo, partTwoAnswer)
 }
 EOF
