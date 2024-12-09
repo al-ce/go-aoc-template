@@ -81,3 +81,8 @@ func InRange(x, min, max int) bool {
 func InMatrix(row, col int, m []string) bool {
 	return row >= 0 && col >= 0 && row <= len(m)-1 && col <= len(m)-1
 }
+
+// Remove an element from a slice at index
+func RemoveIndex(s []int, i int) []int {
+	return append(s[:i], s[i+1:]...)
+}
