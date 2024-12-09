@@ -38,7 +38,7 @@ var lines = strings.Split(`47|53
 
 var (
 	partOneAnswer = "143"
-	partTwoAnswer = "example answer"
+	partTwoAnswer = "123"
 )
 
 type SolutionFunc func([]string) string
