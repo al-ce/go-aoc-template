@@ -86,3 +86,9 @@ func InMatrix(row, col int, m []string) bool {
 func RemoveIndex(s []int, i int) []int {
 	return append(s[:i], s[i+1:]...)
 }
+
+// Swap two elements in a slice
+func Swap(s []int, i, j int) {
+	s[j], s[i] = s[i], s[j]
+
+}
