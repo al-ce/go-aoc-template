@@ -16,12 +16,11 @@ var lines = strings.Split(`....#.....
 .#..^.....
 ........#.
 #.........
-......#...
-`, "\n")
+......#...`, "\n")
 
 var (
 	partOneAnswer = "41"
-	partTwoAnswer = ""
+	partTwoAnswer = "6"
 )
 
 type SolutionFunc func([]string) string
