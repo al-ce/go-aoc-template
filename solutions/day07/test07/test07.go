@@ -19,7 +19,7 @@ var lines = strings.Split(`190: 10 19
 
 var (
 	partOneAnswer = "3749"
-	partTwoAnswer = "example answer"
+	partTwoAnswer = "11387"
 )
 
 type SolutionFunc func([]string) string
