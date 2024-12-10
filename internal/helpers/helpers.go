@@ -48,6 +48,19 @@ func ParseIntString(str string, sep string) []int {
 	return intSlice
 }
 
+// Take a string that contains floats separated by `sep` and return a slice of
+// ints. Ex: "1 2 3" returns []int {1, 2 3}
+func ParseFloatString(str string, sep string) []float64 {
+	split := strings.Split(str, sep)
+	floatSlice := make([]float64, len(split))
+	for i, v := range split {
+		converted, err := strconv.ParseFloat(v, 64)
+		Check(err)
+		floatSlice[i] = converted
+	}
+	return floatSlice
+}
+
 func MakeHashmap(lines []string, sep string) map[string]string {
 	var m = map[string]string{}
 
