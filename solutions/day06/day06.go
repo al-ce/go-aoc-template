@@ -129,7 +129,7 @@ func (g *Guard) patrol() int {
 		}
 		// printLab(g.lab)
 		g.visit()
-		if g.lookAhead() == '#' {
+		for g.lookAhead() == '#' {
 			g.turnRight()
 		}
 		g.move()
