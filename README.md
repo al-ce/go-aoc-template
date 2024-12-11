@@ -87,19 +87,20 @@ This is the `justfile` I use to help my workflow.
 ```just
 set quiet
 releasepath := './bin/aocgosolutions'
+_dayf := "'$(printf %02d)'"
 
 get year day:
     aocgofetch {{year}} {{day}} > inputs/{{day}}
 
-solve day part:
-    mkdir -p bin && go build -o {{releasepath}} go-aoc-template && {{releasepath}} {{day}} {{part}}
+solve day:
+    mkdir -p bin && go build -o {{releasepath}} go-aoc-template && {{releasepath}} {{day}}
 
 test day:
-    go test go-aoc-template/solutions/day$(printf %02d {{day}})
+    go run $(printf "./solutions/day%02d/test%02d/test%02d.go" {{day}} {{day}} {{day}})
 
-setup day:
+setup day:  # Create template for a specific day (!overwrites current file!)
     ./setup.sh {{day}}
 
-everyday:
+everyday:  # Create template for every day (!overwrites all files!)
     bash -c 'for i in {1..25}; do just setup "$i"; done'
 ```
