@@ -4,9 +4,12 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"sync"
 
 	h "go-aoc-template/internal/helpers"
 )
+
+type SolutionFunc func([]string) string
 
 func evalEquation(value int, ops []int) int {
 	if len(ops) == 1 {
@@ -31,11 +34,11 @@ func evalConcatEquation(value int, ops []int) int {
 	if len(ops) == 1 {
 		return ops[0]
 	}
-	concAddOps := append([]int{ops[0]+ops[1]}, ops[2:]...)
+	concAddOps := append([]int{ops[0] + ops[1]}, ops[2:]...)
 	if evalConcatEquation(value, concAddOps) == value {
 		return value
 	}
-	concMulOps := append([]int{ops[0]*ops[1]}, ops[2:]...)
+	concMulOps := append([]int{ops[0] * ops[1]}, ops[2:]...)
 	if evalConcatEquation(value, concMulOps) == value {
 		return value
 	}
@@ -44,31 +47,59 @@ func evalConcatEquation(value int, ops []int) int {
 	return evalConcatEquation(value, concConcOps)
 }
 
-func PartOne(lines []string) string {
-	sum := 0
-	for _, equation := range lines {
+func partOneSolver(equation string) int {
+
 		split := strings.Split(equation, ": ")
 		value, _ := strconv.Atoi(split[0])
 		operands := h.ParseIntString(split[1], " ")
-		if result := evalEquation(value, operands); result == value {
-			sum += value
-		} else {
-		}
+		if result := evalEquation(value, operands); result == value { return value }
+	return 0
+}
+
+func partTwoSolver(equation string) int {
+	split := strings.Split(equation, ": ")
+	value, _ := strconv.Atoi(split[0])
+	operands := h.ParseIntString(split[1], " ")
+	if result := evalEquation(value, operands); result == value {
+		return value
+	} else if result := evalConcatEquation(value, operands); result == value {
+		return value
 	}
+	return 0
+}
+
+func parallelize(lines []string, solver func(equation string) int) int {
+	values := make(chan int, len(lines))
+
+	var wg sync.WaitGroup
+
+	for _, equation := range lines {
+
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			values <- solver(equation)
+		}()
+
+	}
+	go func() {
+		wg.Wait()
+		close(values)
+	}()
+
+	sum := 0
+	for value := range values {
+		sum += value
+	}
+	return sum
+}
+
+func PartOne(lines []string) string {
+	sum := parallelize(lines, partOneSolver)
 	return fmt.Sprint(sum)
 }
 
 func PartTwo(lines []string) string {
-	sum := 0
-	for _, equation := range lines {
-		split := strings.Split(equation, ": ")
-		value, _ := strconv.Atoi(split[0])
-		operands := h.ParseIntString(split[1], " ")
-		if result := evalEquation(value, operands); result == value {
-			sum += value
-		} else if result := evalConcatEquation(value, operands); result == value {
-			sum += value
-		}
-	}
+	sum := parallelize(lines, partTwoSolver)
 	return fmt.Sprint(sum)
 }
