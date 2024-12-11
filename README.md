@@ -87,6 +87,7 @@ This is the `justfile` I use to help my workflow.
 ```just
 set quiet
 releasepath := './bin/aocgosolutions'
+_dayf := "'$(printf %02d)'"
 
 get year day:
     aocgofetch {{year}} {{day}} > inputs/{{day}}
@@ -95,7 +96,7 @@ solve day:
     mkdir -p bin && go build -o {{releasepath}} go-aoc-template && {{releasepath}} {{day}}
 
 test day:
-    go test -v -count=1 go-aoc-template/solutions/day$(printf %02d {{day}}) | grep "^Part"
+    go run $(printf "./solutions/day%02d/test%02d/test%02d.go" {{day}} {{day}} {{day}})
 
 setup day:  # Create template for a specific day (!overwrites current file!)
     ./setup.sh {{day}}
