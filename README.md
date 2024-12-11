@@ -75,7 +75,7 @@ This might not cover any edge cases from the actual puzzle input.
 
 ## Writing your solution
 
-Fill out `PartOne()` and `PartTwo()` in the day's template with each part's solution. See [solutions/day1/day1.go](solutions/day1/day1.go) for reference.
+Fill out `PartOne()` and `PartTwo()` in the day's template with each part's solution. See [solutions/day1/day1.go](solutions/day01/day01.go) for reference.
 
 Helpers can go in [internal/helpers/helpers.go](internal/helpers/helpers.go). In `main.go`, the provided `InputLines()` helper generates the lines from the input file and passes them as a string slice to `PartOne()` and `PartTwo()`.
 
