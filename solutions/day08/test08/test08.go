@@ -22,7 +22,7 @@ var lines = strings.Split(`............
 
 var (
 	partOneAnswer = "14"
-	partTwoAnswer = "example answer"
+	partTwoAnswer = "34"
 )
 
 type SolutionFunc func([]string) string
