@@ -9,8 +9,6 @@ import (
 	h "go-aoc-template/internal/helpers"
 )
 
-type SolutionFunc func([]string) string
-
 func evalEquation(value int, ops []int) int {
 	if len(ops) == 1 {
 		return ops[0]
