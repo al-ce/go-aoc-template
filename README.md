@@ -15,27 +15,18 @@ git clone --single-branch --branch main https://github.com/al-ce/aoc-go-template
 ## Project structure
 
 ```bash
-❯ tree
-.
-├── setup.sh
-├── go.mod
 ├── inputs
-│   └── 1
+│   ├── 1
 ├── internal
-│   └── helpers
-│       └── helpers.go
-├── justfile
-├── main.go
-├── README.md
+│   ├── helpers
+│   │   └── helpers.go
+│   └── imports
+│       └── imports.go
 └── solutions
-    ├── all
-    │   └── all.go
     ├── day01
     │   ├── day01.go
-    │   └── day01_test.go
-    ├── # etc.
-
-31 directories, 58 files
+    │   └── test01
+    │       └── test01.go
 ```
 
 Download the input for day `N` (no leading zeros) in `inputs/` (please note that `inputs/` is in `.gitignore` so you don't commit the input data).
