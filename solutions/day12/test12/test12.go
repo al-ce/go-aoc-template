@@ -7,14 +7,30 @@ import (
 	day12 "go-aoc-template/solutions/day12"
 )
 
-var lines = strings.Split(`AAAA
-BBCD
-BBCC
-EEEC`, "\n")
+// Expects 236 part 2
+// var lines = strings.Split(`EEEEE
+// EXXXX
+// EEEEE
+// EXXXX
+// EEEEE`, "\n")
+
+
+// Expects 80 part 2
+// var lines = strings.Split(`AAAA
+// BBCD
+// BBCC
+// EEEC`, "\n")
+
+// Expects 436 part 2
+var lines = strings.Split(`OOOOO
+OXOXO
+OOOOO
+OXOXO
+OOOOO`, "\n")
 
 var (
 	partOneAnswer = "140"
-	partTwoAnswer = "example answer"
+	partTwoAnswer = "236"
 )
 
 type SolutionFunc func([]string) string
