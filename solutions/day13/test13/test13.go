@@ -46,7 +46,7 @@ var (
 
 type SolutionFunc func([]string) string
 
-func runTest(lines []string, part int, solution SolutionFunc, expected string) {
+func runTest(part int, solution SolutionFunc, expected string) {
 	fmt.Printf("Part %d: ", part)
 	result := solution(lines)
 	if result != expected {
@@ -57,6 +57,6 @@ func runTest(lines []string, part int, solution SolutionFunc, expected string) {
 }
 
 func main() {
-	runTest(lines, 1, day13.PartOne, partOneAnswer)
-	runTest(lines2, 2, day13.PartTwo, partTwoAnswer)
+	runTest(1, day13.PartOne, partOneAnswer)
+	runTest(2, day13.PartTwo, partTwoAnswer)
 }
