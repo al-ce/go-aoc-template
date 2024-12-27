@@ -62,7 +62,7 @@ func ParseFloatString(str string, sep string) []float64 {
 }
 
 func MakeHashmap(lines []string, sep string) map[string]string {
-	var m = map[string]string{}
+	m := map[string]string{}
 
 	for _, l := range lines {
 		split := strings.Split(l, sep)
@@ -103,13 +103,25 @@ func RemoveIndex(s []int, i int) []int {
 // Swap two elements in a slice
 func Swap(s []int, i, j int) {
 	s[j], s[i] = s[i], s[j]
-
 }
 
 // Used to replace % operator's "remainder" behavior
 func Mod(a, b int) int {
 	a = a % b
-	if a >= 0 { return a}
-	if b < 0 { return a - b}
+	if a >= 0 {
+		return a
+	}
+	if b < 0 {
+		return a - b
+	}
 	return a + b
+}
+
+// Return the product of a slice of ints
+func SliceProd(s []int) int {
+	p := 1
+	for _, el := range s {
+		p *= el
+	}
+	return p
 }
