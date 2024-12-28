@@ -66,5 +66,34 @@ func PartOne(lines []string) string {
 }
 
 func PartTwo(lines []string) string {
-	return "TODO"
+	robots := make(map[Coord]struct{})
+	for _, r := range lines {
+		robot := makeRobot(r)
+
+		// Found by trial and error. Saw that 33+101n (width) 87+101n (height)
+		// gave clustered robots, showing their correct x and y positions
+		// respectively. Then brute force checked every number in range 101*103
+		// checking for a sequence of 10 robots in a row (upper frame of the
+		// tree pattern), printing n along the way.
+		newX := h.Mod(robot.p.x+robot.v.x*(7709), WIDTH)
+		newY := h.Mod(robot.p.y+robot.v.y*(7709), HEIGHT)
+		robots[Coord{newX, newY}] = struct{}{}
+	}
+
+	for i := range HEIGHT {
+		for j := range WIDTH {
+			if _, exists := robots[Coord{j, i}]; exists {
+				if (i < 80 && i > 55) && (j < 65 && j > 40) {
+					fmt.Print("\033[32m🌲\033[0m")
+				} else {
+					fmt.Print("\033[31m⨻ \033[0m")
+				}
+			} else {
+				fmt.Print("..")
+			}
+		}
+		println()
+	}
+
+	return fmt.Sprintf("%d", 0)
 }
