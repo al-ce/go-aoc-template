@@ -45,10 +45,19 @@ func (w Warehouse) print() {
 	fmt.Println()
 	for _, row := range w.lines {
 		for _, char := range row {
-			fmt.Print(string(char))
+			if char == '@' {
+				fmt.Print("🤖")
+			} else if char == 'O' {
+				fmt.Print("📦")
+			} else if char == '#' {
+				fmt.Print("🟫")
+			} else {
+				fmt.Print("⬜")
+			}
 		}
 		fmt.Println()
 	}
+	time.Sleep(time.Millisecond * 250)
 }
 
 func (c Coord) getNext(move byte) Coord {
